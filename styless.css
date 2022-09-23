@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.imgPokemon{
+    width: 100px;
+}
+.sectionBlack{
+    background-color:  rgb(14, 27, 99);
+    margin: 80px;
+    padding: 15px;
+}
+.divMarron{
+    background-color: brown;
+    padding: 10px;
+}
+.divRed{
+    background-color: rgb(239, 106, 34);
+    padding: 10px;
+    display: flex;
+}
+.movimientos{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 200px;
+}
+.imagenesPokemon{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.stats{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 200px;
+}
+.negritaText{
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    font-weight: bold;
+}
