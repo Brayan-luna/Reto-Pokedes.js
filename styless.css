@@ -2,45 +2,139 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+font-family: Arial, Helvetica, sans-serif;
 }
-.imgPokemon{
+
+.imgPokemon {
     width: 100px;
 }
-.sectionBlack{
-    background-color:  rgb(14, 27, 99);
-    margin: 80px;
+
+.sectionBlack {
+    background-color: rgb(14, 27, 99);
     padding: 15px;
+    margin-top: 20px;
 }
-.divMarron{
+
+.divMarron {
     background-color: brown;
     padding: 10px;
 }
-.divRed{
+
+.divRed {
     background-color: rgb(239, 106, 34);
-    padding: 10px;
-    display: flex;
+    padding: 20px;
+ 
 }
-.movimientos{
+
+.movimientos {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    height: 200px;
 }
-.imagenesPokemon{
+
+.imagenesPokemon {
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     justify-content: space-evenly;
 }
-.stats{
+
+.stats {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    height: 200px;
+
 }
-.negritaText{
+
+.negritaText {
     color: rgb(255, 255, 255);
     font-size: 17px;
     font-weight: bold;
+}
+/* stylos css Bostrap */
+/* colores */
+.verdeClaro{
+    background-color: #B0B0B0;
+}
+.red{
+    color: red;
+}
+.orange{
+    color: orange;
+}
+.verde{
+    color: rgb(75, 107, 75);
+
+}
+
+.celeste{
+    color: #01FBFB;
+    border: 1px solid black;
+    border-radius: 32px;
+}
+.rojoButt{
+    background-color: #CB3D3D;
+    border: 1px solid black;
+    border-radius: 24px;
+    padding: 20px;
+    margin-left: 5px;
+}
+/* circulos */
+.fa-circle{
+    font-size: 25px;
+}
+.botonCircularSmall{
+    border-radius: 80px;
+    padding:10px 10px;
+    margin-right: 10px;
+}
+/* contenedores */
+.borderCircleSmall{
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.error404{
+    background-image: url("/img/Screenshot_1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.contenedorInformacion{
+    display: flex;
+    margin-top: 10px;
+    padding: 10px;
+    height: 400px;
+    border: solid 1px black;
+    border-radius: 20px 20px 0px 0px;
+ 
+}
+.circleBig{
+    font-size: 60px;
+}
+.circleMedium{
+    font-size: 40px;
+    margin-left: 10px;
+}
+.fa-minus{
+    font-size: 150px;
+}
+/* input name */
+.divBuscador{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inputNamePokemon{
+    background-color: yellow;
+    border: solid 1px black;
+    padding: 10px;
+    outline: none;
+}
+
+.inputNamePokemon::placeholder{
+    color: rgb(193, 126, 126);;
+}
+.h3Titles{
+    font-size: 15px;  
 }
