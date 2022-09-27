@@ -12,12 +12,12 @@ function RenderizarPokemon(imagenFrente, imagenEspalda, nombre, tipo) {
   let h3nombre = document.createElement('h3');
   let nombrePokemon = document.createElement('p');
   h3nombre.textContent = "Nombre";
-  h3nombre.className = "negritaText";
+  h3nombre.className = "negritaText yellow";
   nombrePokemon.textContent = nombre;
   let h3tipo = document.createElement('h3');
   let tipoPokemon = document.createElement('p');
-  h3tipo.textContent = "Tipo";
-  h3tipo.className = "negritaText";
+  h3tipo.textContent = "Tipo de pokemon";
+  h3tipo.className = "negritaText yellow";
   nombrePokemon.className = "negritaText"
   tipoPokemon.className = "negritaText"
   tipoPokemon.textContent = tipo
@@ -36,7 +36,7 @@ function movimientosPokemon(moviemientosPoke) {
   divMovimientos.className = "container-md movimientos"
   let h3Movimiento = document.createElement("h3")
   h3Movimiento.textContent = "Movimientos"
-  h3Movimiento.className = "negritaText"
+  h3Movimiento.className = "negritaText yellow"
 
   divMovimientos.innerHTML = "";
   divMovimientos.insertAdjacentElement("beforeend", h3Movimiento)
@@ -55,7 +55,7 @@ function estadisticasDeLucha(stats) {
   divStats.className = "container-md stats"
   let h3Stats = document.createElement("h3");
   h3Stats.textContent = "Stats"
-  h3Stats.className = "negritaText"
+  h3Stats.className = "negritaText yellow"
   divStats.innerHTML = "";
   divStats.insertAdjacentElement("beforeend", h3Stats)
   arraystats.forEach(element => {
@@ -75,9 +75,9 @@ function alturaAnchura(altura, anchura) {
   let titleAltura = document.createElement('h3')
   let titleAnchura = document.createElement('h3')
   titleAltura.textContent = "Altura"
-  titleAnchura.className = "negritaText"
+  titleAnchura.className = "negritaText yellow"
   titleAnchura.textContent = "Anchura"
-  titleAltura.className = "negritaText"
+  titleAltura.className = "negritaText yellow"
   let alturaPokemon = document.createElement('p')
   alturaPokemon.textContent = altura;
   alturaPokemon.className = "negritaText"
@@ -96,7 +96,7 @@ function habilidades(abilities) {
   divAbilities.className = "container-md habilidades"
   let h3Habilidad = document.createElement('h3')
   h3Habilidad.textContent = "Habilidades"
-  h3Habilidad.className = "negritaText"
+  h3Habilidad.className = "negritaText yellow"
   divAbilities.innerHTML = ""
   divAbilities.insertAdjacentElement("beforeend", h3Habilidad);
   arrayAbilities.forEach(element => {
@@ -128,6 +128,7 @@ formulario.addEventListener("submit", (e) => {
   }
   else {
     alert('rellena bien los campos')
+    e.preventDefault()
   }
 })
 
@@ -145,7 +146,7 @@ const traerDatos = async () => {
   divStats.setAttribute("id", "stats")
   divAbilities.setAttribute("id", "divAbilities")
   try {
-    contendorInformation.innerHTML = ""
+    debugger
     spinerInsert()
     contendorInformation.insertAdjacentElement("beforeend", divPokemon)
     contendorInformation.insertAdjacentElement("beforeend", divMovimientos)
@@ -153,21 +154,19 @@ const traerDatos = async () => {
     contendorInformation.insertAdjacentElement("beforeend", divAlturaAnchura)
     contendorInformation.insertAdjacentElement("beforeend", divAbilities)
     //bacground bonito
-    contendorInformation.className = "contenedorInformacion background1"
+   
     let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${nombrePokemon}`;
     let datosJson = await fetch(urlPokemon)
     let data = await datosJson.json();
-    console.log(data);
     RenderizarPokemon(data.sprites.front_default, data.sprites.back_default, data.name, data.types[0].type.name)
     movimientosPokemon(data.moves);
     estadisticasDeLucha(data.stats);
     alturaAnchura(data.height, data.weight);
     habilidades(data.abilities);
-
-
+    contendorInformation.className = "contenedorInformacion background1"
     if (datosJson.status === 200) {
       let spiner = document.getElementById("spinerDesaparecer");
-      spiner.className = "spinnerNone"
+      spiner.remove()   
     }
 
   }

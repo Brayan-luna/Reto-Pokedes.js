@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Press Start 2P',cursive;
 }
 
 .imgPokemon {
@@ -28,40 +28,32 @@
     padding: 20px;
 
 }
-
-
-
 .negritaText {
     color: rgb(255, 255, 255);
     font-size: 17px;
     font-weight: bold;
 }
-
-/* stylos css Bostrap */
 /* colores */
 .verdeClaro {
     background-color: #B0B0B0;
 }
-
 .red {
     color: red;
 }
-
 .orange {
     color: orange;
 }
-
+.yellow{
+    color: yellow;
+}
 .verde {
     color: rgb(75, 107, 75);
-
 }
-
 .celeste {
     color: #01FBFB;
     border: 1px solid black;
     border-radius: 32px;
 }
-
 .rojoButt {
     background-color: #CB3D3D;
     border: 1px solid black;
@@ -74,7 +66,6 @@
 .fa-circle {
     font-size: 25px;
 }
-
 .botonCircularSmall {
     border-radius: 80px;
     padding: 10px 10px;
@@ -89,9 +80,6 @@
     border: 1px solid black;
     border-radius: 15px;
 }
-
-
-
 .contenedorInformacion {
     display: flex;
     flex-wrap: wrap;
@@ -99,46 +87,37 @@
     padding: 10px;
     border: solid 1px black;
     border-radius: 20px 20px 0px 0px;
-
 }
-
 .circleBig {
     font-size: 60px;
 }
-
 .circleMedium {
     font-size: 40px;
     margin-left: 10px;
 }
-
 .fa-minus {
     font-size: 150px;
 }
-
 /* input name */
 .divBuscador {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .inputNamePokemon {
     background-color: yellow;
     border: solid 1px black;
     padding: 10px;
     outline: none;
 }
-
 .inputNamePokemon::placeholder {
     color: rgb(193, 126, 126);
 }
-
 .h3Titles {
     font-size: 15px;
 }
 .error404{
     background-image: url("/img/Screenshot_1.jpg");
-
 }
 .heightError{
     height: 355px;
@@ -152,8 +131,6 @@
    
 }
 
-/*  */
-
 .movimientos {
     width: 170px;
     display: flex;
@@ -161,7 +138,6 @@
     overflow-y: scroll;
     height: 300px;
 }
-
 .imagenesPokemon {
     width: 250px;
     text-align: center;
@@ -171,7 +147,6 @@
     align-items: center;
 
 }
-
 .stats {
     width: 170px;
     display: flex;
@@ -184,7 +159,4 @@
     position: absolute;
     top: 50%;
     right: 49%;
-}
-.spinnerNone{
-    display: none;
 }
