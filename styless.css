@@ -29,7 +29,7 @@
 
 }
 .negritaText {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 17px;
     font-weight: bold;
 }
@@ -43,8 +43,8 @@
 .orange {
     color: orange;
 }
-.yellow{
-    color: yellow;
+.brown{
+    color: rgb(58, 58, 8);
 }
 .verde {
     color: rgb(75, 107, 75);
@@ -118,6 +118,8 @@
 }
 .error404{
     background-image: url("/img/Screenshot_1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 .heightError{
     height: 355px;
@@ -127,7 +129,9 @@
   
 }
 .background1{
-    background-image: url("/img/background-3.jpg!d");
+    background-image: url("/img/background-4.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
    
 }
 
@@ -147,16 +151,49 @@
     align-items: center;
 
 }
-.stats {
-    width: 170px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    height: 300px;
+.movimientos::-webkit-scrollbar-thumb{
+    background-color: rgb(0, 115, 255);
+    border-radius: 5px;
+    height: 50px;
+}
+.movimientos::-webkit-scrollbar{
+    width: 7px;
+}
 
+.stats{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: "title title";
+    width: 250px;
+    height: 300px;
+}
+.titleStat{
+    grid-area: title;
+}
+.contenidoStat{
+grid-area: stat;
 }
 .spinner{
     position: absolute;
     top: 50%;
     right: 49%;
+}
+/* clases para las listas iconos */
+.corazon{
+    list-style-image: url(img/heart\ pixel\ art\ 16x16.png)
+}
+.espada{
+    list-style-image:url(img/small-sword.png);
+}
+.escudo{
+    list-style-image:url(img/small-shield.png) ;
+}
+.attackSpecial{
+    list-style-image: url(img/libro.png);
+}
+.defensaEspecial{
+    list-style-image:url(img/defensa-especial.png) ;
+}
+.speed{
+    list-style-image: url(img/sped.png);
 }

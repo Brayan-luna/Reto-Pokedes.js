@@ -1,6 +1,9 @@
 let pokemonInformation = [];
 let nombrePokemon = 0;
-
+function urlRestored(){
+  let urlNew = `/index.html` 
+  history.pushState(null, "", urlNew);
+}
 function RenderizarPokemon(imagenFrente, imagenEspalda, nombre, tipo) {
   let divImagenesPokemon = document.getElementById("Pokemon");
   divImagenesPokemon.className = "container-md imagenesPokemon"
@@ -12,12 +15,12 @@ function RenderizarPokemon(imagenFrente, imagenEspalda, nombre, tipo) {
   let h3nombre = document.createElement('h3');
   let nombrePokemon = document.createElement('p');
   h3nombre.textContent = "Nombre";
-  h3nombre.className = "negritaText yellow";
+  h3nombre.className = "negritaText brown";
   nombrePokemon.textContent = nombre;
   let h3tipo = document.createElement('h3');
   let tipoPokemon = document.createElement('p');
   h3tipo.textContent = "Tipo de pokemon";
-  h3tipo.className = "negritaText yellow";
+  h3tipo.className = "negritaText brown";
   nombrePokemon.className = "negritaText"
   tipoPokemon.className = "negritaText"
   tipoPokemon.textContent = tipo
@@ -36,12 +39,12 @@ function movimientosPokemon(moviemientosPoke) {
   divMovimientos.className = "container-md movimientos"
   let h3Movimiento = document.createElement("h3")
   h3Movimiento.textContent = "Movimientos"
-  h3Movimiento.className = "negritaText yellow"
+  h3Movimiento.className = "negritaText brown"
 
   divMovimientos.innerHTML = "";
   divMovimientos.insertAdjacentElement("beforeend", h3Movimiento)
   movimientos.forEach(element => {
-    let nombreMovimiento = document.createElement("p");
+    let nombreMovimiento = document.createElement("li");
     nombreMovimiento.className = "negritaText"
     nombreMovimiento.textContent = element.move.name;
     divMovimientos.insertAdjacentElement("beforeend", nombreMovimiento)
@@ -55,29 +58,48 @@ function estadisticasDeLucha(stats) {
   divStats.className = "container-md stats"
   let h3Stats = document.createElement("h3");
   h3Stats.textContent = "Stats"
-  h3Stats.className = "negritaText yellow"
+  h3Stats.className = "brown titleStat"
   divStats.innerHTML = "";
   divStats.insertAdjacentElement("beforeend", h3Stats)
   arraystats.forEach(element => {
-    let nombreBase = document.createElement("p")
-    nombreBase.textContent = element.base_stat
     let numeroStat = document.createElement("p")
+    numeroStat.textContent = element.base_stat
+    let nombreStat = document.createElement("li")
     numeroStat.className = "negritaText"
-    nombreBase.className = "negritaText"
-    numeroStat.textContent = element.stat.name
+    nombreStat.textContent = `${element.stat.name}:`
+    if (element.stat.name === "hp") {
+      nombreStat.className = "negritaText corazon"
+    }
+    if (element.stat.name === "attack") {
+      nombreStat.className = "negritaText espada"
+    }
+    if (element.stat.name === "defense") {
+      nombreStat.className = "negritaText escudo"
+
+    }
+    if (element.stat.name === "special-attack") {
+      nombreStat.className = "negritaText attackSpecial"
+    }
+    if (element.stat.name === "special-defense") {
+      nombreStat.className = "negritaText defensaEspecial"
+    }
+    if (element.stat.name === "speed") {
+      nombreStat.className = "negritaText speed"
+    }
+    divStats.insertAdjacentElement("beforeend", nombreStat)
     divStats.insertAdjacentElement("beforeend", numeroStat)
-    divStats.insertAdjacentElement("beforeend", nombreBase)
   })
 }
 function alturaAnchura(altura, anchura) {
   let divAlturaAnchura = document.getElementById("alturaAnchura")
+  divAlturaAnchura.innerHTML = ""
   divAlturaAnchura.className = "container-md alturaAnchura"
   let titleAltura = document.createElement('h3')
   let titleAnchura = document.createElement('h3')
   titleAltura.textContent = "Altura"
-  titleAnchura.className = "negritaText yellow"
+  titleAnchura.className = "negritaText brown"
   titleAnchura.textContent = "Anchura"
-  titleAltura.className = "negritaText yellow"
+  titleAltura.className = "negritaText brown"
   let alturaPokemon = document.createElement('p')
   alturaPokemon.textContent = altura;
   alturaPokemon.className = "negritaText"
@@ -96,7 +118,7 @@ function habilidades(abilities) {
   divAbilities.className = "container-md habilidades"
   let h3Habilidad = document.createElement('h3')
   h3Habilidad.textContent = "Habilidades"
-  h3Habilidad.className = "negritaText yellow"
+  h3Habilidad.className = "negritaText brown"
   divAbilities.innerHTML = ""
   divAbilities.insertAdjacentElement("beforeend", h3Habilidad);
   arrayAbilities.forEach(element => {
@@ -120,8 +142,9 @@ function spinerInsert() {
 let formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", (e) => {
   let input = document.getElementById('inputNombre').value;
-  if (/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(input)) {
-    nombrePokemon = input;
+  let inputNombre = input.toLowerCase()
+  if (/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(inputNombre)) {
+    nombrePokemon = inputNombre;
     e.preventDefault()
     traerDatos()
     formulario.reset()
@@ -130,10 +153,13 @@ formulario.addEventListener("submit", (e) => {
     alert('rellena bien los campos')
     e.preventDefault()
   }
+  let url = window.location.pathname;
+  let urlNew = `${url}?Nombre=${nombrePokemon}/encounters` 
+  history.pushState(null, "", urlNew);
+ 
 })
 
 const traerDatos = async () => {
-
   let contendorInformation = document.getElementById("contenedorInfo")
   let divPokemon = document.createElement('div');
   let divMovimientos = document.createElement("div");
@@ -146,7 +172,6 @@ const traerDatos = async () => {
   divStats.setAttribute("id", "stats")
   divAbilities.setAttribute("id", "divAbilities")
   try {
-    debugger
     spinerInsert()
     contendorInformation.insertAdjacentElement("beforeend", divPokemon)
     contendorInformation.insertAdjacentElement("beforeend", divMovimientos)
@@ -154,7 +179,7 @@ const traerDatos = async () => {
     contendorInformation.insertAdjacentElement("beforeend", divAlturaAnchura)
     contendorInformation.insertAdjacentElement("beforeend", divAbilities)
     //bacground bonito
-   
+
     let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${nombrePokemon}`;
     let datosJson = await fetch(urlPokemon)
     let data = await datosJson.json();
@@ -166,7 +191,7 @@ const traerDatos = async () => {
     contendorInformation.className = "contenedorInformacion background1"
     if (datosJson.status === 200) {
       let spiner = document.getElementById("spinerDesaparecer");
-      spiner.remove()   
+      spiner.remove()
     }
 
   }
@@ -176,3 +201,5 @@ const traerDatos = async () => {
     contendorInformation.className = "contenedorInformacion verdeClaro error404 heightError"
   }
 };
+
+document.addEventListener('DOMContentLoaded',urlRestored)
