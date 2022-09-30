@@ -1,10 +1,19 @@
 let pokemonInformation = [];
 let nombrePokemon = 0;
-function urlRestored(){
-  let urlNew = `/index.html` 
+let regresar = false;
+let imgfrente = null;
+let imgEspalda = null;
+let nombrePok = null;
+let tipoPok = null;
+function urlRestored() {
+  let urlNew = `/index.html`
   history.pushState(null, "", urlNew);
 }
 function RenderizarPokemon(imagenFrente, imagenEspalda, nombre, tipo) {
+  imgfrente = imagenFrente;
+  imgEspalda = imagenEspalda;
+  nombrePok = nombre;
+  tipoPok = tipo;
   let divImagenesPokemon = document.getElementById("Pokemon");
   divImagenesPokemon.className = "container-md imagenesPokemon"
   divImagenesPokemon.innerHTML = ""
@@ -31,6 +40,7 @@ function RenderizarPokemon(imagenFrente, imagenEspalda, nombre, tipo) {
   divImagenesPokemon.insertAdjacentElement("beforeend", imagenFrentePok)
   divImagenesPokemon.insertAdjacentElement("beforeend", h3tipo)
   divImagenesPokemon.insertAdjacentElement("beforeend", tipoPokemon)
+
 }
 function movimientosPokemon(moviemientosPoke) {
   let movimientos = [];
@@ -139,6 +149,34 @@ function spinerInsert() {
   contendorInformation.insertAdjacentElement("beforeend", divSpiner)
   divSpiner.insertAdjacentElement("beforeend", spanDiv)
 }
+function AreaPokemon() {
+  let contendorInformation = document.getElementById("contenedorInfo")
+  contendorInformation.innerHTML = "";
+  contendorInformation.className = "contenedorInformacion areaPokemonHeight background1"
+  let areaPokemonImpri = async () => {
+    let datosJso = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombrePokemon}/encounters`)
+    let dataArea = await datosJso.json()
+    let areas = [];
+    areas = dataArea;
+    let ulArea = document.createElement('ul')
+    let titleArea = document.createElement('h3')
+    titleArea.textContent = "Area Pokemon"
+    titleArea.className = "negritaText brown"
+    ulArea.setAttribute("id","ulareaPok")
+    ulArea.className = "areaPokemonflex"
+    contendorInformation.insertAdjacentElement('beforeend', ulArea)
+    ulArea.insertAdjacentElement('beforeend',titleArea)
+    areas.forEach(element => {
+      let nombreArea = document.createElement('li')
+      nombreArea.textContent = element.location_area.name;
+      ulArea.insertAdjacentElement('beforeend', nombreArea)
+    })
+  }
+  areaPokemonImpri()
+  let divPokemon = document.createElement('div');
+  divPokemon.setAttribute("id", "Pokemon")
+  contendorInformation.insertAdjacentElement("beforeend", divPokemon)
+}
 let formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", (e) => {
   let input = document.getElementById('inputNombre').value;
@@ -154,11 +192,14 @@ formulario.addEventListener("submit", (e) => {
     e.preventDefault()
   }
   let url = window.location.pathname;
-  let urlNew = `${url}?Nombre=${nombrePokemon}/encounters` 
+  let urlNew = `${url}?Nombre=${nombrePokemon}/encounters`
   history.pushState(null, "", urlNew);
- 
+  if(regresar === true){
+    let areas = document.getElementById('ulareaPok')
+    areas.remove()
+    regresar = false;
+  }
 })
-
 const traerDatos = async () => {
   let contendorInformation = document.getElementById("contenedorInfo")
   let divPokemon = document.createElement('div');
@@ -179,16 +220,18 @@ const traerDatos = async () => {
     contendorInformation.insertAdjacentElement("beforeend", divAlturaAnchura)
     contendorInformation.insertAdjacentElement("beforeend", divAbilities)
     //bacground bonito
-
     let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${nombrePokemon}`;
     let datosJson = await fetch(urlPokemon)
     let data = await datosJson.json();
-    RenderizarPokemon(data.sprites.front_default, data.sprites.back_default, data.name, data.types[0].type.name)
     movimientosPokemon(data.moves);
     estadisticasDeLucha(data.stats);
     alturaAnchura(data.height, data.weight);
     habilidades(data.abilities);
+    RenderizarPokemon(data.sprites.front_default, data.sprites.back_default, data.name, data.types[0].type.name)
     contendorInformation.className = "contenedorInformacion background1"
+    
+
+    //quitar espiner
     if (datosJson.status === 200) {
       let spiner = document.getElementById("spinerDesaparecer");
       spiner.remove()
@@ -196,10 +239,27 @@ const traerDatos = async () => {
 
   }
   catch (error) {
-
     contendorInformation.innerHTML = ""
-    contendorInformation.className = "contenedorInformacion verdeClaro error404 heightError"
+    contendorInformation.className = "contenedorInformacion verdeClaro  error404 heightError"
   }
-};
-
-document.addEventListener('DOMContentLoaded',urlRestored)
+}
+//eventos bton area y regresar 
+let botonArea = document.getElementById('botonAreasPokemon');
+let botonCaracteristicas = document.getElementById('caracteristicas')
+botonArea.addEventListener("click", (e) => {
+  let contendorInformation = document.getElementById("contenedorInfo")
+  contendorInformation.innerHTML = ""
+  AreaPokemon()
+  RenderizarPokemon(imgfrente,imgEspalda,nombrePok,tipoPok)
+  regresar = true
+})
+botonCaracteristicas.addEventListener('click', (e) => {
+  traerDatos()
+  if(regresar === true){
+    let areas = document.getElementById('ulareaPok')
+    areas.remove()
+    regresar = false;
+  }
+  regresar = false
+})
+document.addEventListener('DOMContentLoaded', urlRestored)

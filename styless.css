@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Press Start 2P',cursive;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .imgPokemon {
@@ -14,10 +14,12 @@
     padding: 15px;
     margin-top: 20px;
 }
-.alturaAnchura{
+
+.alturaAnchura {
     padding-top: 20px;
     width: 100px;
 }
+
 .divMarron {
     background-color: brown;
     padding: 10px;
@@ -28,32 +30,49 @@
     padding: 20px;
 
 }
+
 .negritaText {
     color: rgb(0, 0, 0);
     font-size: 17px;
     font-weight: bold;
 }
+
 /* colores */
 .verdeClaro {
     background-color: #B0B0B0;
 }
+
 .red {
     color: red;
 }
+
 .orange {
     color: orange;
 }
-.brown{
+
+.brown {
     color: rgb(58, 58, 8);
 }
+
 .verde {
     color: rgb(75, 107, 75);
 }
+
+.verdeBackground {
+    background-color: rgb(75, 107, 75);
+    ;
+}
+
+.orangeBackground {
+    background-color: orange;
+}
+
 .celeste {
     color: #01FBFB;
     border: 1px solid black;
     border-radius: 32px;
 }
+
 .rojoButt {
     background-color: #CB3D3D;
     border: 1px solid black;
@@ -66,20 +85,28 @@
 .fa-circle {
     font-size: 25px;
 }
+
 .botonCircularSmall {
     border-radius: 80px;
     padding: 10px 10px;
     margin-right: 10px;
 }
-.habilidades{
+
+.habilidades {
     padding-top: 20px;
-    width: 100px;
+    width: 120px;
 }
+
 /* contenedores */
+.paddinSection {
+    padding-top: 20px;
+}
+
 .borderCircleSmall {
     border: 1px solid black;
     border-radius: 15px;
 }
+
 .contenedorInformacion {
     display: flex;
     flex-wrap: wrap;
@@ -88,60 +115,98 @@
     border: solid 1px black;
     border-radius: 20px 20px 0px 0px;
 }
+
 .circleBig {
     font-size: 60px;
 }
+
 .circleMedium {
     font-size: 40px;
     margin-left: 10px;
 }
+
 .fa-minus {
     font-size: 150px;
 }
+
 /* input name */
 .divBuscador {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .inputNamePokemon {
     background-color: yellow;
     border: solid 1px black;
     padding: 10px;
     outline: none;
 }
+
 .inputNamePokemon::placeholder {
     color: rgb(193, 126, 126);
 }
+
 .h3Titles {
     font-size: 15px;
 }
-.error404{
+
+.error404 {
     background-image: url("/img/Screenshot_1.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
-.heightError{
+
+.heightError {
     height: 355px;
 }
-.pantallagris{
-    background-image: url("/img/pantalla-griis.png");
-  
-}
-.background1{
-    background-image: url("/img/background-4.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-   
+
+.divAreaPokemon {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
-.movimientos {
-    width: 170px;
+.areaPokemonflex {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
     height: 300px;
+    width: 300px;
 }
+.areaPokemonflex::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 115, 255);
+    border-radius: 5px;
+    height: 50px;
+}
+.areaPokemonflex::-webkit-scrollbar {
+    width: 7px;
+}
+.areaPokemonHeight {
+    height: 355px;
+}
+
+.pantallagris {
+    background-image: url("/img/pantalla-griis.png");
+
+}
+
+.background1 {
+    background-image: url("/img/background-4.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+}
+
+.movimientos {
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    text-align: start;
+    height: 300px;
+}
+
 .imagenesPokemon {
     width: 250px;
     text-align: center;
@@ -151,49 +216,71 @@
     align-items: center;
 
 }
-.movimientos::-webkit-scrollbar-thumb{
+
+.movimientos::-webkit-scrollbar-thumb {
     background-color: rgb(0, 115, 255);
     border-radius: 5px;
     height: 50px;
 }
-.movimientos::-webkit-scrollbar{
+
+.movimientos::-webkit-scrollbar {
     width: 7px;
 }
 
-.stats{
+.stats {
     display: grid;
     grid-template-columns: auto auto;
     grid-template-areas: "title title";
     width: 250px;
     height: 300px;
 }
-.titleStat{
+
+.titleStat {
     grid-area: title;
 }
-.contenidoStat{
-grid-area: stat;
+
+.contenidoStat {
+    grid-area: stat;
 }
-.spinner{
+
+.spinner {
     position: absolute;
     top: 50%;
     right: 49%;
 }
+
 /* clases para las listas iconos */
-.corazon{
+.corazon {
     list-style-image: url(img/heart\ pixel\ art\ 16x16.png)
 }
-.espada{
-    list-style-image:url(img/small-sword.png);
+
+.espada {
+    list-style-image: url(img/small-sword.png);
 }
-.escudo{
-    list-style-image:url(img/small-shield.png) ;
+
+.escudo {
+    list-style-image: url(img/small-shield.png);
 }
-.attackSpecial{
+
+.attackSpecial {
     list-style-image: url(img/libro.png);
 }
-.defensaEspecial{
-    list-style-image:url(img/defensa-especial.png) ;
+
+.defensaEspecial {
+    list-style-image: url(img/defensa-especial.png);
 }
-.speed{
+
+.speed {
     list-style-image: url(img/sped.png);
+}
+
+/* botones funciones */
+.buttonArea {
+    width: 150px;
+    padding: 2px;
+    border-radius: 20px;
+    color: white;
+}
+.paddin{
+    padding-top: 20px;
 }
